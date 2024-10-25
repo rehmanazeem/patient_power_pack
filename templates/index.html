@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="chatbox"></div>
+    <input id="userInput" type="text" placeholder="Type a message..." />
+    <button onclick="handleUserInput()">Send</button>
+
+    <script>
+        // async function handleUserInput() {
+        //     const userMessage = document.getElementById('userInput').value;
+        //     const response = await fetch('/send_message', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({ message: userMessage }),
+        //     });
+        //     const data = await response.json();
+        //     displayMessage(data.reply);
+        // }
+
+        // function displayMessage(message) {
+        //     const chatbox = document.getElementById('chatbox');
+        //     chatbox.innerHTML += `<div>${message}</div>`;
+        // }
+
+        function displayMessage(message, isUser) {
+            const chatbox = document.getElementById('chatbox');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerText = message;
+            chatbox.appendChild(messageDiv);
+            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to bottom
+        }
+
+        // Update the handleUserInput function
+        async function handleUserInput() {
+            const userMessage = document.getElementById('userInput').value;
+            if (!userMessage) return; // Ignore empty messages
+
+            displayMessage(userMessage, true); // Show user message
+            const response = await fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage }),
+            });
+            const data = await response.json();
+            displayMessage(data.reply, false); // Show bot reply
+            document.getElementById('userInput').value = ''; // Clear input
+        }
+
+    </script>
+</body>
+</html>
