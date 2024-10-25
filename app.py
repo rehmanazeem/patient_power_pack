@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 import os
 
 from langchain_aws import ChatBedrock
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
@@ -23,6 +24,15 @@ try:
 except Exception as e:
     print(f"Error: {e}")
 
+parser = StrOutputParser()
+
+chain = model | parser
+
+messages = [
+    SystemMessage(content="You are an AI assitant that can help with medical questions. Your user is a patient named Anna."),
+    HumanMessage(content="hi!"),
+]
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -36,8 +46,10 @@ def send_message():
 
 def get_bot_response(message):
     # Simulated response for demonstration
-    response = model.invoke([HumanMessage(content=message)])
-    return response.content  # Replace with your LLM interaction logic
+    messages.append(HumanMessage(content=message))
+    response = chain.invoke(messages)
+    messages.append(SystemMessage(content=response))
+    return response  # Replace with your LLM interaction logic
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
