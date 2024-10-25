@@ -5,30 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
 </head>
 <body>
-    <div id="chatbox"></div>
-    <input id="userInput" type="text" placeholder="Type a message..." />
-    <button onclick="handleUserInput()">Send</button>
+
+    <nav id="navbar">
+        <div id="container">
+            <div id="navbar-inner">
+                <div id="logo">
+                    <a href="https://patient-power-pack.vercel.app" id="logo-text">Logo</a>
+                </div>
+                <div id="auth-buttons">
+                    <a href="https://apphackathon100-sandbox.mxapps.io/index.html?profile=Responsive" id="login-button" class="button ghost">
+                        Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="content">
+        <div id="chatbox"></div>
+        <div id="chat_container">
+            <input id="userInput" type="text" placeholder="Type a message..." />
+            <button onclick="handleUserInput()">Send</button>
+        </div>
+    </div>
+    
+
+    
+    
 
     <script>
-        // async function handleUserInput() {
-        //     const userMessage = document.getElementById('userInput').value;
-        //     const response = await fetch('/send_message', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({ message: userMessage }),
-        //     });
-        //     const data = await response.json();
-        //     displayMessage(data.reply);
-        // }
-
-        // function displayMessage(message) {
-        //     const chatbox = document.getElementById('chatbox');
-        //     chatbox.innerHTML += `<div>${message}</div>`;
-        // }
 
         function displayMessage(message, isUser) {
             const chatbox = document.getElementById('chatbox');

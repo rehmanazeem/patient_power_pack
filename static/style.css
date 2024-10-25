@@ -1,8 +1,90 @@
+a {
+    text-decoration: none;
+}
+
+#navbar {
+    background-color: #fff; /* Update this with your preferred background color */
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #111827; /* Update this with your primary color */
+}
+
+#login-button, #signup-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login-button.ghost {
+    background-color: #111827;
+    color: white;
+    border: 2px solid #111827; /* Update this with your primary color */
+    border-radius: 0.25rem;
+    
+}
+
+
+/* Global container settings */
+#container {
+    /* max-width: 1120px; */
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
+#navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    width: 100%;
+}
+
+
+.button:hover {
+    opacity: 0.85;
+}
+
+/* Responsive settings */
+@media (max-width: 768px) {
+    #navbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    #auth-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(to bottom, #ebf8ff, #ffffff); /* Adjust #ebf8ff if necessary */
     margin: 0;
+    
+    height: 100vh;
+}
+
+#content {
     padding: 20px;
+}
+
+#chat_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 h1 {
@@ -21,33 +103,37 @@ h1 {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+
+
 #userInput {
-    width: 80%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-right: 10px;
     transition: border-color 0.3s;
+    font-size: 16px;
 }
 
 #userInput:focus {
-    border-color: #007BFF;
+    border-color: #363636;
     outline: none;
 }
 
 button {
     width: 15%;
     padding: 10px;
-    background-color: #007BFF;
+    background-color: #111827; 
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 16px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #363636;
 }
 
 .message {
@@ -57,11 +143,10 @@ button:hover {
 }
 
 .user-message {
-    background-color: #e1f7d5;
     text-align: right;
 }
 
 .bot-message {
-    background-color: #d1e7fd;
+    background-color: #ebf8ff;
     text-align: left;
 }
