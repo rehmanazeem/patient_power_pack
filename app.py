@@ -28,9 +28,52 @@ parser = StrOutputParser()
 
 chain = model | parser
 
+systemPrompt = """You are an AI assitant that can help with medical questions. Your user is a patient named Anna. 
+
+Here is a doctor report about Anna's condition:
+
+---
+We report about the patient Anna Kumari, 45 years old, who was treated in our clinic.
+
+Main diagnoses:
+Stage I early breast cancer, cT1c N0 M0
+Luminal B type, ductal invasive carcinoma
+ER 90%, PR 60%, HER2neu negativ
+G3, Ki67 20%
+Other relevant diagnoses:
+Osteoporosis
+Low Vitamin D levels
+
+History:
+The patient presented for an infrared camera breast cancer screening in May 2024. The
+infrared imaging highlighted a small, suspicious area that wasn't palpable. Further
+diagnostic tests confirmed the small area as a stage I breast cancer. Staging diagnostics
+did not display any metastases. The recommendation of the tumor board was to
+perform a neoadjuvant chemotherapy, followed by a breast-conserving surgery of the
+breast and axilla and an adjuvant radiotherapy as well as endocrine treatment.
+
+Dianostics:
+Infrared camera (02.05.24): abmormal region of the right breast
+Sonography (04.06.24): right side BI-RADs IV (17mm), left side BI-RADS II
+Mammography (04.06.24): right side BI-RADs IV (17mm), left side BI-RADS II
+Histology (04.06.24): ductal invasive carcinoma, G3,
+Immunohistochemistry: ER 90%, PR 60%, HER2neu negativ, Ki67 20%
+
+Staging diagnostics:
+Sonography of the liver (26.06.24): not suspicious
+X-ray of the chest (30.06.24): not suspicious
+Tumor board recommendation (14.07.24):
+- Neoadjuvant chemotherapy with 4 cycles of Epirubicin and Cylophosphamide
+followed by 12 cycles of weekly Paclitaxel
+- Breast-conserving surgery of the breast and axilla
+- Radiotherapy
+- Adjuvant endocrine treatment with tamoxifen
+
+---
+"""
+
 messages = [
-    SystemMessage(content="You are an AI assitant that can help with medical questions. Your user is a patient named Anna."),
-    HumanMessage(content="hi!"),
+    SystemMessage(content=systemPrompt)
 ]
 
 @app.route('/')
