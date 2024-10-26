@@ -8,6 +8,16 @@ a {
     justify-content: space-between;
 }
 
+img {
+    max-width: 50%;
+    max-height: 50vh;
+    display: block;
+    margin: 0 auto;
+    padding-top: 35px;
+
+    
+}
+
 #logo-text {
     font-size: 1.5rem;
     font-weight: bold;
