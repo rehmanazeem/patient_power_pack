@@ -53,19 +53,7 @@ a {
     opacity: 0.85;
 }
 
-/* Responsive settings */
-@media (max-width: 768px) {
-    #navbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-    }
 
-    #auth-buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
 
 
 
@@ -96,7 +84,7 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #fff;
-    height: 400px;
+    height: 72vh;
     overflow-y: auto;
     padding: 15px;
     margin-bottom: 15px;
